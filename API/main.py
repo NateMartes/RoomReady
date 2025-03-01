@@ -22,12 +22,29 @@ app.add_middleware(
 
 # method of recieving images
 @app.post("/upload")
-async def intial_prompt_data(file: UploadFile, latitude: float | None = None, longitude:float | None = None):
-    with tempfile.NamedTemporaryFile() as fp:
-        with open(fp.name, mode='wb') as f:
-            f.write(await file.read(size=-1))
+async def upload_file(
+    file: UploadFile = File(...),  # Required File Upload (raw bytes)
+    latitude: Optional[float] = Form(None),  # Optional Latitude
+    longitude: Optional[float] = Form(None)  # Optional Longitude
+):
+    # Read the raw file data as bytes
+    file_bytes = await file.read()
 
-    if latitude == None or longitude == None:
-        return {"No location data given!":"Null"}
-    else:
-        return {latitude:longitude}
+    # Save file to a temporary location
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".bin") as temp_file:
+        temp_file.write(file_bytes)
+        file_path = temp_file.name  # Save the file path
+
+    # Construct response
+    response = {
+        "message": "Upload successful",
+        "file_size": len(file_bytes),  # Bytes length of the file
+        "saved_path": file_path
+    }
+
+    if latitude is not None and longitude is not None:
+        response["latitude"] = latitude
+        response["longitude"] = longitude
+
+    return response
+
