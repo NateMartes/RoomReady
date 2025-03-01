@@ -1,13 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, File, Form
 from fastapi import UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import tempfile
+from typing import Optional
 
 app = FastAPI()
 
 origins = [
-    "http://localhost:8080"
+    "http://localhost:8080",
+    "http://localhost:5173"
 ]
 
 app.add_middleware(
@@ -19,7 +21,7 @@ app.add_middleware(
 )
 
 # method of recieving images
-@app.post("/getstarted")
+@app.post("/upload")
 async def intial_prompt_data(file: UploadFile, latitude: float | None = None, longitude:float | None = None):
     with tempfile.NamedTemporaryFile() as fp:
         with open(fp.name, mode='wb') as f:
