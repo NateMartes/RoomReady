@@ -35,7 +35,7 @@ function DataForm() {
           };
           console.log(request)
           if (location) {
-            const response = await fetch(`https://localhost:8080/upload?longitude=${location.longitude}&latitude=${location.latitude}`, request)
+            const response = await fetch(`http://localhost:8080/upload?longitude=${location.longitude}&latitude=${location.latitude}`, request)
             console.log(response);
           }
         // const result = await response.json();
