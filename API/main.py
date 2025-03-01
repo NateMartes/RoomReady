@@ -39,7 +39,9 @@ async def upload_file(
     response = {
         "message": "Upload successful",
         "file_size": len(file_bytes),  # Bytes length of the file
-        "saved_path": file_path
+        "saved_path": file_path,
+        "latitude": 0,
+        "longitude": 0
     }
 
     if latitude is not None and longitude is not None:
