@@ -9,7 +9,7 @@ function DataForm() {
     longitude: number;
   }
 
-  const [image, setImage] = useState<Blob | null>(null);
+  const [image, setImage] = useState<File | null>(null);
   const [location, setLocation] = useState<locationData | null>(null);
 
   const handleImageChange = (newImage: File) => {
@@ -19,31 +19,26 @@ function DataForm() {
   const handleLocationChange = (newLocation: locationData | null) => {
     setLocation(newLocation);
   };
-  const sendDataToServer = (event: React.FormEvent) => {
+  const sendDataToServer =  async (event: React.FormEvent) => {
   event.preventDefault()
+  const formData = new FormData();
     try {
-       const reader = new FileReader();
+      
+       formData.append("image", image);
 
-       reader.onload = async () => {
-          const rawData = reader.result as ArrayBuffer;
-          const request = {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/octet-stream", // Send as raw binary data
-            },
-            body: rawData, // Send the raw binary data for each image
-          };
-          console.log(request)
-          if (location) {
-            const response = await fetch(`http://localhost:8080/upload?longitude=${location.longitude}&latitude=${location.latitude}`, request)
-            console.log(response);
-          }
+       const request = {
+        method: "POST",
+        body: formData, // Send the raw binary data for each image
+       };
+    
+       console.log(request)
+       if (location) {
+          console.log(`LOCATION: ${location.latitude} ${location.longitude}`);
+          const response = await fetch(`http://localhost:8080/upload?longitude=${location.longitude}&latitude=${location.latitude}`, request)
+          console.log(response);
+       }
         // const result = await response.json();
         // console.log("Upload successful:", result);
-      };
-      if (image instanceof Blob) {
-        reader.readAsArrayBuffer(image);
-      }
 
     } catch (error) {
       console.error("Error uploading images:", error);
