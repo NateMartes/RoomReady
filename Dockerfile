@@ -1,13 +1,9 @@
 FROM python:3.10-slim
 
-COPY requirements.txt /app/
-
-WORKDIR /app
+COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+EXPOSE 8080
 
-EXPOSE 8000
-
-CMD ["python","main.py"]
+CMD ["fastapi", "run", "API/main.py", "--port", "8080"]
