@@ -172,3 +172,5 @@ cython_debug/
 
 #NOAA Api key
 API/NOAA.env
+#Gemini key
+API/Gemini.env
