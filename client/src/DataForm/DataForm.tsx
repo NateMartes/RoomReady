@@ -24,7 +24,7 @@ function DataForm() {
   const formData = new FormData();
     try {
       
-       formData.append("image", image);
+       formData.append("file", image);
 
        const request = {
         method: "POST",
