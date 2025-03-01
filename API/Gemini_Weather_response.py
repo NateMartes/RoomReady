@@ -8,7 +8,7 @@ def send_forecast_to_gemini(forecast_json, api_key):
     # Configure Gemini API correctly
     genai.configure(api_key=api_key)
 
-    # Format the prompt
+    # Format the prompt for supreme overlord gemini
     prompt = f"""You have been given an image of some setting. 
     Here is a 7-day forecast of the weather for that setting: {forecast_json}. 
     Please give some suggestions on how to make the given setting safer for the upcoming weather, 
@@ -21,9 +21,9 @@ def send_forecast_to_gemini(forecast_json, api_key):
 
     return response.text
 
-# Example usage
+# this shit runs the shit i guess :)
 if __name__ == "__main__":
-    api_key = "AIzaSyB4Vm7cwlhinUD3VxviSm5-vdG8QIt_o8c"  # Replace with your actual API key
+    api_key = "ADD-API-KEY"  # Replace with your actual API key
 
     with open("forecast_output.json", "r") as f:
         forecast_data = json.load(f)
