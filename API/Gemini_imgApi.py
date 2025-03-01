@@ -1,5 +1,4 @@
 from google import genai
-from WeatherApi import forecast
 import google.generativeai as genai
 
 # Configure API key
@@ -17,4 +16,3 @@ response = model.generate_content(["Could you summarize this file?", uploaded_fi
 
 # Print the response
 print(response.text)
-print(forecast)
