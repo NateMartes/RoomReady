@@ -95,4 +95,5 @@ if __name__ == "__main__":
     longitude = -97.0892  # Add in Long from location data
     weather = NOAAWeather(token)
     forecast = weather.get_7_day_forecast(latitude, longitude)
-    print(forecast)
+    #TODO:To test program, uncomment the code below
+    #print(forecast)
