@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function Location() {
+function Location( { onLocationChange }: { onLocationChange: (location: LocationData) => void}) {
   
   interface LocationData {
     "longitude": number;
@@ -20,6 +20,7 @@ function Location() {
         (position) => {
           const { latitude, longitude } = position.coords;
           setLocation({ longitude, latitude });
+          onLocationChange({ longitude, latitude});
         },
         (error) => {
           // Geo location not allowed
@@ -45,17 +46,6 @@ function Location() {
         Enable Location:
         <input type="checkbox" onChange={handleSwitchChange}/>
       </label>
-      <div>
-        {isEnabled ? (
-          location ? (
-            <p>{location.latitude}, {location.longitude}</p>
-          ) : (
-            <p>Fetching location...</p>
-          )
-        ) : (
-          <p>{isEnabled} Switch is off. Location will be fetched when enabled.</p>
-        )}
-      </div>
     </div>
   );
 };

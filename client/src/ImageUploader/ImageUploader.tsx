@@ -1,22 +1,27 @@
 import React, { useState } from "react";
 
-function ImageUploader() {
-  const [images, setImages] = useState<string[]>([]);
+function ImageUploader({ onImageChange }: { onImageChange: (image: File) => void }) {
+  const [image, setImage] = useState<string>("");
+  const [imageFile, setImageFile] = useState<File>();
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files) {
-      const newImages = Array.from(files).map((file) => URL.createObjectURL(file));
-      setImages((prevImages) => [...prevImages, ...newImages]);
+      const newImage = URL.createObjectURL(files[0]);
+      const newFile = files[0]
+
+      setImage(newImage)
+      setImageFile(newFile);
+      onImageChange(newFile);
     }
   };
 
   return (
     <div>
       <div className="images-uploaded">
-        {images.map((src, index) => (
-          <img key={index} src={src} alt={`Uploaded ${index}`} width={150}/>
-        ))}
+        {(image !== "") ? (
+          <img src={image} alt={`Uploaded ${image}`} width={150}/>
+        ) : <></>}
       </div>
       <input className="image-upload-btn" type="file" accept="image/*" multiple onChange={handleImageUpload} />
     </div>
