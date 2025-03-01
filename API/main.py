@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, Form
+from fastapi import FastAPI, File, Query
 from fastapi import UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -24,14 +24,14 @@ app.add_middleware(
 @app.post("/upload")
 async def upload_file(
     file: UploadFile = File(...),  # Required File Upload (raw bytes)
-    latitude: Optional[float] = Form(None),  # Optional Latitude
-    longitude: Optional[float] = Form(None)  # Optional Longitude
+    latitude: Optional[float] = Query(None),  # Optional Latitude
+    longitude: Optional[float] = Query(None)  # Optional Longitude
 ):
     # Read the raw file data as bytes
     file_bytes = await file.read()
 
     # Save file to a temporary location
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".bin") as temp_file:
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp_file:
         temp_file.write(file_bytes)
         file_path = temp_file.name  # Save the file path
 
@@ -48,3 +48,6 @@ async def upload_file(
 
     return response
 
+@app.get("/test")
+async def test_connection():
+    return {"test": "data"}
