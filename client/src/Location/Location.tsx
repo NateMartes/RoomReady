@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-function Location( { onLocationChange }: { onLocationChange: (location: LocationData) => void}) {
-  
-  interface LocationData {
+  interface locationData {
     "longitude": number;
     "latitude": number;
   }
 
+function Location ( { onLocationChange }: { onLocationChange: (location: locationData) => void}) {
+  
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
-  const [location, setLocation] = useState<LocationData | null>(null);
+  const [_, setLocation] = useState<locationData | null>(null);
 
-  const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSwitchChange = () => {
     setIsEnabled((prevState) => !prevState);
   };
 
@@ -24,6 +24,7 @@ function Location( { onLocationChange }: { onLocationChange: (location: Location
         },
         (error) => {
           // Geo location not allowed
+          console.log(error)
           setLocation(null);
         }
       );

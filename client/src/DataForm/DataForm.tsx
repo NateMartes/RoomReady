@@ -5,13 +5,12 @@ import Location from "../Location/Location.tsx";
 function DataForm() {
 
   interface locationData {
-  latitude: number;
-  longitude: number;
+    latitude: number;
+    longitude: number;
   }
 
-  const [image, setImage] = useState<File>(null);
+  const [image, setImage] = useState<Blob | null>(null);
   const [location, setLocation] = useState<locationData | null>(null);
-  const reader = new FileReader();
 
   const handleImageChange = (newImage: File) => {
     setImage(newImage);
@@ -20,7 +19,7 @@ function DataForm() {
   const handleLocationChange = (newLocation: locationData | null) => {
     setLocation(newLocation);
   };
-  const sendDataToServer = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const sendDataToServer = (event: React.FormEvent) => {
   event.preventDefault()
     try {
        const reader = new FileReader();
@@ -35,11 +34,16 @@ function DataForm() {
             body: rawData, // Send the raw binary data for each image
           };
           console.log(request)
-          const response = await fetch(`https://localhost:8080/upload?longitude=${location.longitude}?latitude=${location.latitude}`, request) 
+          if (location) {
+            const response = await fetch(`https://localhost:8080/upload?longitude=${location.longitude}?latitude=${location.latitude}`, request)
+            console.log(response);
+          }
         // const result = await response.json();
         // console.log("Upload successful:", result);
       };
-      reader.readAsArrayBuffer(image);
+      if (image instanceof Blob) {
+        reader.readAsArrayBuffer(image);
+      }
 
     } catch (error) {
       console.error("Error uploading images:", error);

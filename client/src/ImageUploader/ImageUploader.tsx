@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function ImageUploader({ onImageChange }: { onImageChange: (image: File) => void }) {
   const [image, setImage] = useState<string>("");
-  const [imageFile, setImageFile] = useState<File>();
+  const [_, setImageFile] = useState<File>();
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
