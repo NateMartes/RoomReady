@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-function Location() {
-  
-  interface LocationData {
+  interface locationData {
     "longitude": number;
     "latitude": number;
   }
 
+function Location ( { onLocationChange }: { onLocationChange: (location: locationData) => void}) {
+  
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
-  const [location, setLocation] = useState<LocationData | null>(null);
+  const [_, setLocation] = useState<locationData | null>(null);
 
-  const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSwitchChange = () => {
     setIsEnabled((prevState) => !prevState);
   };
 
@@ -20,9 +20,11 @@ function Location() {
         (position) => {
           const { latitude, longitude } = position.coords;
           setLocation({ longitude, latitude });
+          onLocationChange({ longitude, latitude});
         },
         (error) => {
           // Geo location not allowed
+          console.log(error)
           setLocation(null);
         }
       );
@@ -45,17 +47,6 @@ function Location() {
         Enable Location:
         <input type="checkbox" onChange={handleSwitchChange}/>
       </label>
-      <div>
-        {isEnabled ? (
-          location ? (
-            <p>{location.latitude}, {location.longitude}</p>
-          ) : (
-            <p>Fetching location...</p>
-          )
-        ) : (
-          <p>{isEnabled} Switch is off. Location will be fetched when enabled.</p>
-        )}
-      </div>
     </div>
   );
 };
