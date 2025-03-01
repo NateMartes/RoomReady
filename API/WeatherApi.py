@@ -92,7 +92,7 @@ class NOAAWeather:
 if __name__ == "__main__":
     with open(".env","r"):
         
-        token = "ThisIsNotTheToken"
+        token = " "
         latitude = 39.7456  # Add in lat float from location data
         longitude = -97.0892  # Add in Long from location data
         weather = NOAAWeather(token)
