@@ -171,4 +171,4 @@ cython_debug/
 .pypirc
 
 #NOAA Api key
-API/.env
+API/NOAA.env

@@ -90,7 +90,7 @@ class NOAAWeather:
 
 # Starts the fuckin program
 if __name__ == "__main__":
-    with open("API/.env","r") as f:
+    with open("API/NOAA.env","r") as f:
         
         token = f.readline
         latitude = 39.7456  # Add in lat float from location data
