@@ -16,7 +16,6 @@ class NOAAWeather:
             "Accept": "application/geo+json"
         }
 
-        # Get the grid endpoint for the given latitude and longitude
         points_url = f"{self.base_url}/points/{latitude},{longitude}"
         response = requests.get(points_url, headers=headers)
         response.raise_for_status()
@@ -24,7 +23,6 @@ class NOAAWeather:
         grid_data = response.json()
         forecast_url = grid_data['properties']['forecastGridData']
 
-        # Retrieve the forecast grid data
         forecast_response = requests.get(forecast_url, headers=headers)
         forecast_response.raise_for_status()
 
@@ -47,7 +45,6 @@ class NOAAWeather:
             "probability_of_precipitation": self._extract_values(properties.get('probabilityOfPrecipitation', {}).get('values', []), "%"),
         }
 
-        # Determine the shortest available forecast list to avoid index errors(CRITICAL DONT ACCIDENTALLY EDIT)
         num_days = min(len(forecast[key]) for key in forecast if forecast[key])
 
         formatted_forecast = []
@@ -73,30 +70,31 @@ class NOAAWeather:
                 "probability_of_precipitation": forecast['probability_of_precipitation'][i]['value'],
             })
 
-        return json.dumps(formatted_forecast, indent=4)
+        with open("forecast_output.json", "w") as json_file:
+            json.dump(formatted_forecast, json_file, indent=4)
+
+        return formatted_forecast
 
     def _extract_values(self, values, unit):
         """
-        Helper function to extract values and add units, ensuring the input is valid.(TODO:DONT TOUCH THIS PLZ)
+        Helper function to extract values and add units, ensuring the input is valid.
         """
         extracted = []
         for value in values:
             if isinstance(value, dict) and 'validTime' in value and 'value' in value:
                 extracted.append({
-                    "validTime": value['validTime'].split("T")[0],  # Extracts only the date part
+                    "validTime": value['validTime'].split("T")[0],
                     "value": f"{value['value']} {unit}" if value['value'] is not None else None
                 })
         return extracted
 
-# Starts the fuckin program
 if __name__ == "__main__":
-    with open("API/NOAA.env","r") as f:
-        
-        token = f.readline
-        latitude = 39.7456  # Add in lat float from location data
-        longitude = -97.0892  # Add in Long from location data
-        weather = NOAAWeather(token)
+    with open("API/NOAA.env", "r") as f:
+        token = f.readline().strip()
     
-        forecast = weather.get_7_day_forecast(latitude, longitude)
-        #TODO:To test program, uncomment the code below
-        print(forecast)
+    latitude = 39.7456
+    longitude = -97.0892
+    weather = NOAAWeather(token)
+
+    forecast = weather.get_7_day_forecast(latitude, longitude)
+    print(json.dumps(forecast, indent=4))
