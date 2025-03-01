@@ -92,8 +92,8 @@ if __name__ == "__main__":
     with open("API/NOAA.env", "r") as f:
         token = f.readline().strip()
     
-    latitude = 39.7456
-    longitude = -97.0892
+    latitude = 39.7456 #Be sure to change these to the location data from front end
+    longitude = -97.0892#Be sure to change these to the location data from front end
     weather = NOAAWeather(token)
 
     forecast = weather.get_7_day_forecast(latitude, longitude)
