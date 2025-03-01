@@ -90,10 +90,13 @@ class NOAAWeather:
 
 # Starts the fuckin program
 if __name__ == "__main__":
-    token = "ADD API KEY"
-    latitude = 39.7456  # Add in lat float from location data
-    longitude = -97.0892  # Add in Long from location data
-    weather = NOAAWeather(token)
-    forecast = weather.get_7_day_forecast(latitude, longitude)
-    #TODO:To test program, uncomment the code below
-    #print(forecast)
+    with open(".env","r"):
+        
+        token = "ThisIsNotTheToken"
+        latitude = 39.7456  # Add in lat float from location data
+        longitude = -97.0892  # Add in Long from location data
+        weather = NOAAWeather(token)
+    
+        forecast = weather.get_7_day_forecast(latitude, longitude)
+        #TODO:To test program, uncomment the code below
+        print(forecast)
