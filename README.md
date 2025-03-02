@@ -42,7 +42,7 @@ By simply snapping a picture, Room-Ready gathers weather data based on your loca
    .   ' -+-              .      /                          .               _|_    *                             *     
           |                +~~  *        '                                   |    +                          +         
 
-
+```
 
 ## Building and Running
 
