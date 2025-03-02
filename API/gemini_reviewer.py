@@ -1,5 +1,6 @@
+from WeatherApi import NOAAWeather
 import json
-import google.generativeai as genai 
+import google.generativeai as genai
 
 GEMINI_MODEL_TYPE = 'gemini-2.0-flash-001'
 
@@ -40,16 +41,31 @@ def review_img(model, img_path):
 
 def review_img_with_weather(model, img_path, svn_day_frcst):
     uploaded_file = genai.upload_file(img_path)
-    respone = model.generate_content([
+    response = model.generate_content([
         REVIEW_WITH_WEATHER_PROMPT.replace('{}', svn_day_frcst), uploaded_file
     ])
     return response.text
 
 
 if __name__ == '__main__':
-    API_KEY = ''
-    model = create_model(API_KEY)
-    print(review_img(model, 'imagedata.jpg'))
+    GEMINI_API_KEY = ''
+    NOAA_API_KEY = ''
+
+    weather_api = NOAAWeather(NOAA_API_KEY)
+
+    DETROIT_LAT = 42.3527307
+    DETROIT_LONG = -83.2639216
+    detroit_fcst = json.dumps(weather_api.get_7_day_forecast(DETROIT_LAT, DETROIT_LONG))
+
+    NEWARK_LAT = 39.6814513
+    NEWARK_LONG = -75.7972885
+    newark_fcst = json.dumps(weather_api.get_7_day_forecast(NEWARK_LAT, NEWARK_LONG))
+
+    model = create_model(GEMINI_API_KEY)
+    print(review_img(model, 'imagedata.jpg'), '\n')
+    print(review_img_with_weather(model, 'skyrimroom.jpg', detroit_fcst), '\n')
+    print(review_img_with_weather(model, 'walk-in-cooler.jpeg', detroit_fcst), '\n')
+    print(review_img_with_weather(model, 'logcabin.jpg', newark_fcst))
 
 """
 >>>>>>> 3ab3f5da5f32e70c1122f74bca5a3dd1e0b5087f
