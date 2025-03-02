@@ -52,8 +52,12 @@ function DataForm() {
     
        console.log(request)
        if (location) {
-          console.log(`LOCATION: ${location.latitude} ${location.longitude}`);
-          const response = await fetch(`http://localhost:8080/upload?longitude=${location.longitude}&latitude=${location.latitude}`, request)
+          const response = await fetch(`http://localhost:8080/test?longitude=${location.longitude}&latitude=${location.latitude}`, request)
+          console.log(response);
+          const newResult = await response.json();
+          setResult(test_result) //CHANGE THIS!!!
+      } else {
+          const response = await fetch(`http://localhost:8080/test/`, request)
           console.log(response);
           const newResult = await response.json();
           setResult(test_result) //CHANGE THIS!!!
@@ -71,7 +75,7 @@ function DataForm() {
       <form onSubmit={sendDataToServer}>
         <ImageUploader onImageChange={handleImageChange} />
         <Location onLocationChange={handleLocationChange} />
-        <button type="submit" disabled={!location || !image}>Send Data</button>
+        <button type="submit" disabled={!image}>Send Data</button>
       </form>
     )
   );
