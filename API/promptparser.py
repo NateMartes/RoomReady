@@ -33,7 +33,7 @@ class PromptParser:
                             line = line[2:] # string without -
                             line = line.split("$$") # list
                             risk.append(line[0].strip()) # disaster name
-                            line = line[1].split("|")
+                            line = line[len(line)-1].split("|")
                             risk.append(line[0].strip()) # description
                             risk.append(line[1].strip()) # suggestions
                             self.risks.append(risk)
