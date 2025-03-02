@@ -33,7 +33,7 @@ function ImageUploader({ onImageChange, onLocationChange , switchLocation}: Imag
   return (
       <div className={styles.container}>
         {image && (
-          <img className={styles.image} src={image} alt={`Uploaded ${image}`} width={150}/>
+          <img className={styles.image} src={image} alt={`Uploaded ${image}`} width={300}/>
         )}
       {/* Custom File Input Button */}
       <div className={styles.fileInputContainer}>

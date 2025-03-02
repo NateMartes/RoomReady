@@ -3,6 +3,7 @@ import ImageUploader from "../ImageUploader/ImageUploader.tsx";
 import Location from "../Location/Location.tsx";
 import Response from "../Response/Response.tsx";
 import LoadingIcon from "../assets/Dark_Mode_Load.svg";
+import styles from "./DataForm.module.css"
 
 function DataForm() {
 
@@ -102,7 +103,7 @@ function DataForm() {
         <div className="submitContainer">
           <button className="button" type="submit" disabled={!image || (isLocationOn && !location) ||
           (isLocationOn && location && !image)}>Analyze!</button>
-          {isLoading ? <img style={{margin: "0", verticalAlign: 'middle'} }src={LoadingIcon} i
+          {isLoading ? <img style={{margin: "0", verticalAlign: 'middle'} }src={LoadingIcon} 
           type="image/svg" alt="Loading" width="36px"/> : null}
         </div>
       </form>
@@ -110,7 +111,10 @@ function DataForm() {
 
 
   return (
-    result ? (Object.keys(result).length !== 0 ? <Response result={result} /> : 
+    result ? (Object.keys(result).length !== 0 ?
+    <>
+    <img className={styles.image} src={URL.createObjectURL(image)} alt={`Uploaded ${image}`} width={300}/>
+    <Response result={result} /></> : 
     <>{form}<p>Not recgonzied as a valid image.</p></>) : form 
   );
 }

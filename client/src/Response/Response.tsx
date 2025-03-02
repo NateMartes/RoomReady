@@ -23,7 +23,7 @@ function Response({ result }: { result: response }) {
   if (!result) return <div>Loading..</div>;
   return ( 
     <div className={styles.responseContainer}>
-    <h2>Risk Analysis Assessment Finish! {result.total_risk}</h2>
+    <h2>Risk Analysis Completed! {result.total_risk}</h2>
     <p>{result.Summary}</p>
     {result.risks.map((array, index) => (<Risk key={index} name={array[0]} desc={array[1]} imprv={array[2]} onRiskChange={handleRisksChange} index={index}/>))}
     </div>
