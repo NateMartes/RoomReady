@@ -9,8 +9,9 @@ import google.generativeai as genai  # Correct import
 GEMINI_MODEL_TYPE = 'gemini-2.0-flash-001'
 
 REVIEW_PROMPT = """
-You have been given an image of some setting. Please give at most a 3 sentence summary
-of the setting's risks against natural disasters. Please denote it with a * at the beginning
+You have been given an image of some room. If the room does not have any significant risks
+against natural disasters, please only responsd with @. Otherwise, please give at most a 3 sentence
+summary of the setting's risks against natural disasters. Please denote it with a * at the beginning
 and end of it. Also, please list natural disaster risks associated with that setting, 
 and a suggestion for each risk. Please list a risk and its suggestion on its own line, 
 denoted by a - at the beginning of the line. For each risk, please give a name for it,
@@ -19,16 +20,16 @@ Please divide the risk and suggestion on each line with a | between them.
 """
 
 REVIEW_WITH_WEATHER_PROMPT = """
-You have been given an image of some setting. Here is a 7-day forecast of the weather for
-that setting: {}. Please give at most a 3 sentence summary of the setting's risks against
-the upcoming weather, and general risks against natural disasters. Please denote it with
-a * at the beginning and end of it. Also, please list risks from the setting for the upcoming
-weather and general natural disasters, and a suggestion for each risk. Please list a risk
-and its suggestion on its own line, denoted by a - at the beginning of the line. For each
-risk, please give a name for it, and a description for it. Please divide the name and description
-of each risk with $$ between them. Please divide the risk and suggestion on each line with a |
-between it.
-
+You have been given an image of some room. Here is a 7-day forecast of the weather for
+that setting: {}. If the room does not have any significant risks against any upcoming or general
+natural disasters, please only respond with @. Otherwise, please give at most a 3 sentence
+summary of the setting's risks against the upcoming weather, and general risks against
+natural disasters. Please denote it with a * at the beginning and end of it. Also, 
+please list risks from the setting for the upcoming weather and general natural disasters,
+and a suggestion for each risk. Please list a risk and its suggestion on its own line,
+denoted by a - at the beginning of the line. For each risk, please give a name for it,
+and a description for it. Please divide the name and description of each risk with $$
+between them. Please divide the risk and suggestion on each line with a | between it.
 """
 
 def create_model(api_key):
