@@ -13,7 +13,7 @@ function Risk( {name, desc, imprv, onRiskChange, index}: {name: string, desc: st
   return (
       <div>
           <h3>{name}
-          <div className={styles.checkboxWrapper26}><input type="checkbox" id={index}/>
+          <div className={styles.checkboxWrapper26}><input type="checkbox" id={index} onClick={handleChange}/>
           <label htmlFor={index}><div className={styles.tickMark}></div></label></div></h3>
           <p>{desc}</p>
           <h4>Improvments</h4>

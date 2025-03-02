@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ImageUploader from "../ImageUploader/ImageUploader.tsx";
-import Location from "../Location/Location.tsx";
 import Response from "../Response/Response.tsx";
 import LoadingIcon from "../assets/Dark_Mode_Load.svg";
 import styles from "./DataForm.module.css"
@@ -18,7 +17,7 @@ function DataForm() {
     risks: [string, string, string][];
   }
 
-  const test_result: response = {
+ /* const test_result: response = {
     "total_risk": 67,
     "summary": "sdbfyshfbusbrfebdrfryusbfhu wrufbsuhbfhuswbfwhedfubwifdjefnwuifhghuwifhswjfnbwfwbifbw",
     "risks": [
@@ -27,14 +26,13 @@ function DataForm() {
     ["Bad windows", "pfgmnerhjtbgruiedhbgth uefgthjewr3edhifujdhergwyuhff\
     jigerbnfjnewhrfbhi ifdrewbfuidfi gnrgejbdgerti yuebfghuebffgfui9efjhuefhuii", "ANOTHER DESCIRPTION!!!"]
     ]
-  }
+  }*/
 
-
-  const [image, setImage] = useState<File | null>(null);
+  const [image, setImage] = useState<Blob | null>(null);
   const [location, setLocation] = useState<locationData | null>(null);
-  const [isLocationOn, setLocationOn] = useState<bool>(false);
+  const [isLocationOn, setLocationOn] = useState<boolean>(false);
   const [result, setResult] = useState<response | null>(null);
-  const [isLoading, setIsLoading] = useState<bool>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleImageChange = (newImage: File) => {
     setImage(newImage);
@@ -45,7 +43,7 @@ function DataForm() {
   };
 
   const setLocationOnChange = () => {
-    setLocationOn((prevState) => {
+    setLocationOn((prevState: boolean) => {
       const newState = !prevState;
       return newState;
     })
@@ -55,15 +53,16 @@ function DataForm() {
   event.preventDefault()
   setIsLoading(true);
 
-  const submitButton = event.currentTarget.querySelector("button[type='submit']");
+  const submitButton = event.currentTarget.querySelector("button[type='submit']") as HTMLButtonElement | null;
   if (submitButton) {
     submitButton.disabled = true;
   }
 
   const formData = new FormData();
     try {
-      
-       formData.append("file", image);
+       if (image) {
+          formData.append("file", image);
+        }
 
        const request = {
         method: "POST",
@@ -77,7 +76,9 @@ function DataForm() {
           setIsLoading(false);
           if (newResult.summary === "") {
             newResult = {}
-            submitButton.disabled = false;
+              if (submitButton) {
+                submitButton.disabled = false;
+              }
           }
           setResult(newResult);
       } else {
@@ -86,7 +87,9 @@ function DataForm() {
           setIsLoading(false);
           if (newResult.summary === "") {
             newResult = {}
-            submitButton.disabled = false;
+              if (submitButton) {
+                submitButton.disabled = false;
+              }
           }
           setResult(newResult);
       }
