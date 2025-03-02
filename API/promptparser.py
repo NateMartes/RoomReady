@@ -31,7 +31,10 @@ class PromptParser:
                         try:
                             risk = []
                             line = line[2:] # string without -
-                            line = line.split("$$") # list
+                            testline = line.split("$$") # list;
+                            if len(testline) == len(line):
+                                testline = line.split("$")
+                            line = testline
                             risk.append(line[0].strip()) # disaster name
                             line = line[len(line)-1].split("|")
                             risk.append(line[0].strip()) # description
