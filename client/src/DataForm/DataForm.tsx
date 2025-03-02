@@ -50,6 +50,12 @@ function DataForm() {
 
   const sendDataToServer =  async (event: React.FormEvent) => {
   event.preventDefault()
+
+  const submitButton = event.currentTarget.querySelector("button[type='submit']");
+  if (submitButton) {
+    submitButton.disabled = true;
+  }
+
   const formData = new FormData();
     try {
       
