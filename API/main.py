@@ -22,7 +22,7 @@ app.add_middleware(
 
 # method of recieving images
 @app.post("/test")
-async def upload_file(
+async def testfile(
     file: UploadFile = File(...),  # Required File Upload (raw bytes)
     latitude: Optional[float] = Query(None),  # Optional Latitude
     longitude: Optional[float] = Query(None)  # Optional Longitude
