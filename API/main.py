@@ -10,14 +10,14 @@ from WeatherApi import NOAAWeather
 import json
 
 app = FastAPI()
-with open("GEM.env", "r") as f:
-    GEM_API_KEY = f.readline()
+#with open("GEM.env", "r") as f:
+#    GEM_API_KEY = f.readline()
 
-with open("NOAA.env", "r") as f:
-    NOAA_API_KEY = f.readline()
+#with open("NOAA.env", "r") as f:
+#    NOAA_API_KEY = f.readline()
 
-model = gemini_reviewer.create_model(GEM_API_KEY)
-weather = NOAAWeather(NOAA_API_KEY)
+model = gemini_reviewer.create_model("YOUR_KEY_HERE!!!")
+weather = NOAAWeather("YOUR_KEY_HERE!!!")
 
 origins = [
     "http://localhost:8080",
