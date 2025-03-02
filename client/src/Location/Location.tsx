@@ -6,7 +6,7 @@ import styles from "./Location.module.css"
     "latitude": number;
   }
 
-function Location ( { onLocationChange }: { onLocationChange: (location: locationData) => void}) {
+function Location ( { onLocationChange , switchLocation}: { switchLocation: (location: locationData) => void, setLocationOnChange: () => void}) {
   
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
   const [_, setLocation] = useState<locationData | null>(null);
@@ -37,19 +37,20 @@ function Location ( { onLocationChange }: { onLocationChange: (location: locatio
 
   // Trigger location fetching when switch is enabled
   useEffect(() => {
+    switchLocation();
     if (isEnabled) {
       getUserLocation();
+    } else {
+      setLocation(null);
     }
   }, [isEnabled]);
 
   return (
-    <div>
       <label className={styles.switchContainer}>
         <input type="checkbox" className={styles.switchInput} onChange={handleSwitchChange}/>
         <span className={styles.switchSlider}></span>
-        <span className={styles.switchText}>Use location in analysis</span>
+        <span className={styles.switchText}>Use Location in Analysis</span>
       </label>
-    </div>
   );
 };
 

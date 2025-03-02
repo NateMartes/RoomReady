@@ -1,0 +1,8 @@
+.responseContainer {
+  text-align: left;
+  padding: 3em;
+}
+.responseContainer > h2 {
+  margin: 0;
+  margin-bottom: .5em;
+}

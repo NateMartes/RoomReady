@@ -1,1 +1,12 @@
-
+.headerDiv {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center horizontally */
+    width: 100%;
+    margin-bottom: 5em;
+}
+.headerDiv > .headerSummary {
+    text-align: left; /* Left-align text */
+    width: 50%; /* Set a max width for readability (optional) */
+    max-width: 600px; /* Prevents text from stretching too wide */
+}

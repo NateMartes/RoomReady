@@ -1,10 +1,11 @@
 /* The switch container */
 .switchContainer {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5em; /* Space between toggle and text */
-  font-size: 1em;
+  font-size: 1.2em;
   cursor: pointer;
+  align-self: center;
 }
 
 /* Hide the default checkbox */
@@ -40,17 +41,10 @@
 
 /* Checked state styles */
 .switchInput:checked + .switchSlider {
-  background-color: #007bff;
+  background-color: #b5cba1;
 }
 
 .switchInput:checked + .switchSlider::before {
   transform: translateX(1.625em); /* 26px */
-}
-
-/* Text next to the toggle */
-.switchText {
-  color: #333;
-  font-size: 1em;
-  transition: 0.3s;
 }
 

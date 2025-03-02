@@ -1,0 +1,10 @@
+.formElements {
+  display: flex;               /* Use Flexbox to align items inline */
+  flex-direction: row;
+}
+
+.submitContainer {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}

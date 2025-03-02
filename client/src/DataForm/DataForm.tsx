@@ -29,6 +29,7 @@ function DataForm() {
 
   const [image, setImage] = useState<File | null>(null);
   const [location, setLocation] = useState<locationData | null>(null);
+  const [isLocationOn, setLocationOn] = useState<bool>(false);
   const [result, setResult] = useState<response | null>(null);
 
   const handleImageChange = (newImage: File) => {
@@ -38,6 +39,14 @@ function DataForm() {
   const handleLocationChange = (newLocation: locationData | null) => {
     setLocation(newLocation);
   };
+
+  const setLocationOnChange = () => {
+    setLocationOn((prevState) => {
+      const newState = !prevState;
+      return newState;
+    })
+  };
+
   const sendDataToServer =  async (event: React.FormEvent) => {
   event.preventDefault()
   const formData = new FormData();
@@ -55,12 +64,13 @@ function DataForm() {
           const response = await fetch(`http://localhost:8080/test?longitude=${location.longitude}&latitude=${location.latitude}`, request)
           console.log(response);
           const newResult = await response.json();
-          setResult(test_result) //CHANGE THIS!!!
+          setResult(test_result); //CHANGE THIS!!!
       } else {
           const response = await fetch(`http://localhost:8080/test/`, request)
           console.log(response);
           const newResult = await response.json();
-          setResult(test_result) //CHANGE THIS!!!
+          console.log(newResult);
+          setResult(newResult); //CHANGE THIS!!!
       }
 
     } catch (error) {
@@ -73,9 +83,13 @@ function DataForm() {
       <Response result={result} />
     ) : (
       <form onSubmit={sendDataToServer}>
-        <ImageUploader onImageChange={handleImageChange} />
-        <Location onLocationChange={handleLocationChange} />
-        <button type="submit" disabled={!image}>Send Data</button>
+        <div className="formElements">
+          <ImageUploader onImageChange={handleImageChange} onLocationChange={handleLocationChange} switchLocation={setLocationOnChange}/>
+        </div>
+        <div className="submitContainer">
+          <button className="button" type="submit" disabled={!image || (isLocationOn && !location) ||
+          (isLocationOn && location && !image)}>Analyze!</button>
+        </div>
       </form>
     )
   );

@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em; /* Add some space between the image and button */
+    margin: 1em;
+}
+
+.image {
+    width: 300px;
+    height: auto;
+    margin: 1em;
+    border-radius: 8px; /* Optional: Slight roundness to the image */
+    transition: transform 0.1s ease, box-shadow 0.3s ease; /* Add smooth hover effect */
+}
+
+.image:hover {
+    transform: scale(1.05); /* Slight zoom-in effect */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+input[type="file"] {
+    display: none;
+}
+
