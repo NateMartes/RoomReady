@@ -1,19 +1,55 @@
 import json
 import google.generativeai as genai  # Correct import
 
+GEMINI_MODEL_TYPE = 'gemini-2.0-flash-001'
+
+REVIEW_PROMPT = """
+You have been given an image of some setting. Please give some suggestions
+on how to make the setting safer for natural disasters. Please list each
+suggestion on its own line with a - at the beginning of each line.
+"""
+
+REVIEW_WITH_WEATHER_PROMPT = """
+You have been given an image of some setting. Here is a 7-day forecast of
+the weather for that setting: {}. Please give some suggestions on how to make
+the given setting safer for the upcoming weather, as well as some general
+suggestions to make the setting generally safer. Please list each suggestion on
+its own line with a - at the beginning of each line.
+"""
+
+def create_model(api_key):
+    genai.configure(api_key=api_key)
+    return genai.GenerativeModel(GEMINI_MODEL_TYPE)
+
+
+def review_img(model, img_path):
+    uploaded_file = genai.upload_file(img_path)
+    response = model.generate_content([REVIEW_PROMPT, uploaded_file])
+    return response.text
+
+
+def review_img_with_weather(model, img_path, svn_day_frcst):
+    uploaded_file = genai.upload_file(img_path)
+    respone = model.generate_content([
+        REVIEW_WITH_WEATHER_PROMPT.replace('{}', svn_day_frcst), uploaded_file
+    ])
+    return response.text
+
+
+"""
 def send_forecast_to_gemini(forecast_json, api_key):
-    """
+    \"""
     Sends the NOAA weather forecast to Gemini API with a specific prompt format.
-    """
+    \"""
     # Configure Gemini API correctly
     genai.configure(api_key=api_key)
 
     # Format the prompt for supreme overlord gemini
-    prompt = f"""You have been given an image of some setting. 
+    prompt = f\"""You have been given an image of some setting. 
     Here is a 7-day forecast of the weather for that setting: {forecast_json}. 
     Please give some suggestions on how to make the given setting safer for the upcoming weather, 
     as well as some general suggestions to make the setting generally safer. 
-    Please list each suggestion on its own line with a - at the beginning of each line."""
+    Please list each suggestion on its own line with a - at the beginning of each line.\"""
 
     # Create the model and generate content
     model = genai.GenerativeModel("gemini-2.0-flash-001")
@@ -30,3 +66,4 @@ if __name__ == "__main__":
 
     result = send_forecast_to_gemini(json.dumps(forecast_data, indent=4), api_key)
     print(result)
+"""
