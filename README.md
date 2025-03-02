@@ -30,7 +30,7 @@ By simply snapping a picture, Room-Ready gathers weather data based on your loca
 
                                 ## 📚 Sources  
                                  - 🌟 **Gemini**  
-
+                                 - 🌩️ **NOAA-API**
                                ---
 
 🌪️ Stay safe. Stay prepared. Get **Room-Ready!**  
