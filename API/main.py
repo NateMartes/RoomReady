@@ -16,8 +16,8 @@ app = FastAPI()
 #with open("NOAA.env", "r") as f:
 #    NOAA_API_KEY = f.readline()
 
-model = gemini_reviewer.create_model("YOUR_KEY_HERE!!!")
-weather = NOAAWeather("YOUR_KEY_HERE!!!")
+model = gemini_reviewer.create_model("AIzaSyDSagerzV8SibHHwkSKxYC1zRdxbhDOXJs")
+weather = NOAAWeather("VdaKgSsRpBBiJvsXKsiNNybdtDHIMjex")
 
 origins = [
     "http://localhost:8080",
