@@ -1,0 +1,56 @@
+/* The switch container */
+.switchContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5em; /* Space between toggle and text */
+  font-size: 1em;
+  cursor: pointer;
+}
+
+/* Hide the default checkbox */
+.switchInput {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.switchSlider {
+  position: relative;
+  display: inline-block;
+  width: 3.125em; /* 50px */
+  height: 1.5em; /* 24px */
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 1.5em;
+}
+
+/* The slider knob */
+.switchSlider::before {
+  content: "";
+  position: absolute;
+  height: 1.125em; /* 18px */
+  width: 1.125em;
+  left: 0.25em; /* 4px */
+  bottom: 0.1875em; /* 3px */
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* Checked state styles */
+.switchInput:checked + .switchSlider {
+  background-color: #007bff;
+}
+
+.switchInput:checked + .switchSlider::before {
+  transform: translateX(1.625em); /* 26px */
+}
+
+/* Text next to the toggle */
+.switchText {
+  color: #333;
+  font-size: 1em;
+  transition: 0.3s;
+}
+

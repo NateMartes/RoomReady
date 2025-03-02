@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "./Location.module.css"
 
   interface locationData {
     "longitude": number;
@@ -43,9 +44,10 @@ function Location ( { onLocationChange }: { onLocationChange: (location: locatio
 
   return (
     <div>
-      <label>
-        Enable Location:
-        <input type="checkbox" onChange={handleSwitchChange}/>
+      <label className={styles.switchContainer}>
+        <input type="checkbox" className={styles.switchInput} onChange={handleSwitchChange}/>
+        <span className={styles.switchSlider}></span>
+        <span className={styles.switchText}>Use location in analysis</span>
       </label>
     </div>
   );
