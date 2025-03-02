@@ -16,7 +16,7 @@ with open("GEM.env", "r") as f:
 with open("NOAA.env", "r") as f:
     NOAA_API_KEY = f.readline()
 
-model = gemini_reviewer.create_model(GEM_API_KEY)
+model = gemini_reviewer.create_model("AIzaSyDSagerzV8SibHHwkSKxYC1zRdxbhDOXJs")
 weather = NOAAWeather(NOAA_API_KEY)
 
 origins = [
@@ -78,13 +78,14 @@ async def upload_file(
     if latitude is not None and longitude is not None:
         forecast = weather.get_7_day_forecast(latitude, longitude)
         gemini_reply = gemini_reviewer.review_img_with_weather(model, file_path, json.dumps(forecast))
+    else:
+        gemini_reply = gemini_reviewer.review_img(model, file_path)
 
     risk_informatics = PromptParser(gemini_reply)
 
     # Construct response
     response = {
         "summary": risk_informatics.get_summary(),
-        #"total_risks": "",  # Bytes length of the file
         "risks" : []
     }
 

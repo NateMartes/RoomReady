@@ -34,7 +34,6 @@ def create_model(api_key):
     genai.configure(api_key=api_key)
     return genai.GenerativeModel(GEMINI_MODEL_TYPE)
 
-
 def review_img(model, img_path):
     uploaded_file = genai.upload_file(img_path)
     response = model.generate_content([REVIEW_PROMPT, uploaded_file])
@@ -64,7 +63,7 @@ if __name__ == '__main__':
     NEWARK_LONG = -75.7972885
     newark_fcst = json.dumps(weather_api.get_7_day_forecast(NEWARK_LAT, NEWARK_LONG))
 
-    model = create_model(GEMINI_API_KEY)
+    model = create_model("AIzaSyDSagerzV8SibHHwkSKxYC1zRdxbhDOXJs")
     print(review_img(model, 'imagedata.jpg'), '\n')
     print(review_img_with_weather(model, 'skyrimroom.jpg', detroit_fcst), '\n')
     print(review_img_with_weather(model, 'walk-in-cooler.jpeg', detroit_fcst), '\n')

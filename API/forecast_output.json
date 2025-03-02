@@ -1,0 +1,101 @@
+[
+    {
+        "label": "Current Day",
+        "temperature": "5 \u00b0F",
+        "dewpoint": "-8.88888888888889 \u00b0F",
+        "max_temperature": "17.22222222222222 \u00b0F",
+        "min_temperature": "-6.666666666666667 \u00b0F",
+        "average_temperature": "5.3 \u00b0F",
+        "relative_humidity": "36 %",
+        "wind_speed": "31.484 mph",
+        "probability_of_precipitation": "2 %"
+    },
+    {
+        "label": "Day 2",
+        "temperature": "3.3333333333333335 \u00b0F",
+        "dewpoint": "-10.555555555555555 \u00b0F",
+        "max_temperature": "1.6666666666666667 \u00b0F",
+        "min_temperature": "-6.666666666666667 \u00b0F",
+        "average_temperature": "-2.5 \u00b0F",
+        "relative_humidity": "35 %",
+        "wind_speed": "29.632 mph",
+        "probability_of_precipitation": "4 %"
+    },
+    {
+        "label": "Day 3",
+        "temperature": "2.2222222222222223 \u00b0F",
+        "dewpoint": "-11.11111111111111 \u00b0F",
+        "max_temperature": "3.888888888888889 \u00b0F",
+        "min_temperature": "-3.3333333333333335 \u00b0F",
+        "average_temperature": "0.3 \u00b0F",
+        "relative_humidity": "36 %",
+        "wind_speed": "25.928 mph",
+        "probability_of_precipitation": "1 %"
+    },
+    {
+        "label": "Day 4",
+        "temperature": "0.5555555555555556 \u00b0F",
+        "dewpoint": "-11.666666666666666 \u00b0F",
+        "max_temperature": "11.11111111111111 \u00b0F",
+        "min_temperature": "4.444444444444445 \u00b0F",
+        "average_temperature": "7.8 \u00b0F",
+        "relative_humidity": "41 %",
+        "wind_speed": "24.076 mph",
+        "probability_of_precipitation": "0 %"
+    },
+    {
+        "label": "Day 5",
+        "temperature": "-0.5555555555555556 \u00b0F",
+        "dewpoint": "-12.222222222222221 \u00b0F",
+        "max_temperature": "15.555555555555555 \u00b0F",
+        "min_temperature": "6.666666666666667 \u00b0F",
+        "average_temperature": "11.1 \u00b0F",
+        "relative_humidity": "43 %",
+        "wind_speed": "22.224 mph",
+        "probability_of_precipitation": "3 %"
+    },
+    {
+        "label": "Day 6",
+        "temperature": "-2.2222222222222223 \u00b0F",
+        "dewpoint": "-13.333333333333334 \u00b0F",
+        "max_temperature": "10.555555555555555 \u00b0F",
+        "min_temperature": "-0.5555555555555556 \u00b0F",
+        "average_temperature": "5.0 \u00b0F",
+        "relative_humidity": "46 %",
+        "wind_speed": "20.372 mph",
+        "probability_of_precipitation": "0 %"
+    },
+    {
+        "label": "Day 7",
+        "temperature": "-2.7777777777777777 \u00b0F",
+        "dewpoint": "-14.444444444444445 \u00b0F",
+        "max_temperature": "10 \u00b0F",
+        "min_temperature": "1.1111111111111112 \u00b0F",
+        "average_temperature": "5.6 \u00b0F",
+        "relative_humidity": "44 %",
+        "wind_speed": "18.52 mph",
+        "probability_of_precipitation": "1 %"
+    },
+    {
+        "label": "Day 8",
+        "temperature": "-3.888888888888889 \u00b0F",
+        "dewpoint": "-15.555555555555555 \u00b0F",
+        "max_temperature": "10.555555555555555 \u00b0F",
+        "min_temperature": "0 \u00b0F",
+        "average_temperature": "5.3 \u00b0F",
+        "relative_humidity": "43 %",
+        "wind_speed": "16.668 mph",
+        "probability_of_precipitation": "3 %"
+    },
+    {
+        "label": "Day 9",
+        "temperature": "-5 \u00b0F",
+        "dewpoint": "-16.11111111111111 \u00b0F",
+        "max_temperature": "8.88888888888889 \u00b0F",
+        "min_temperature": "0.5555555555555556 \u00b0F",
+        "average_temperature": "4.7 \u00b0F",
+        "relative_humidity": "45 %",
+        "wind_speed": "18.52 mph",
+        "probability_of_precipitation": "31 %"
+    }
+]
