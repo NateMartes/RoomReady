@@ -1,10 +1,5 @@
 import json
-<<<<<<< HEAD
 import google.generativeai as genai 
-# Correct import ^^^^^^^^^^^^^^^
-#pip install google-generativeai
-=======
-import google.generativeai as genai  # Correct import
 
 GEMINI_MODEL_TYPE = 'gemini-2.0-flash-001'
 
