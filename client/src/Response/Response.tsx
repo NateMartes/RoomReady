@@ -17,10 +17,15 @@ function Response({ result }: { result: response }) {
     setRiskStates((prevRisks) => {
       const updatedRisks = [...prevRisks];
       updatedRisks[index] = newRisk;
-      const val = (newRisk) ? 1 : -1; 
-      setRm((prevRm) => (prevRm + val) /  updatedRisks.length)
       return updatedRisks;
     })
+    setRm((prevRm) => {
+      if (newRisk) {
+        return (prevRm + 1);
+      } else {
+        return (prevRm - 1);
+      }
+    });
   };
 
   if (!result) return <div>Loading..</div>;
@@ -30,7 +35,7 @@ function Response({ result }: { result: response }) {
     <p>{result.Summary}</p>
     {result.risks.map((array, index) => (<Risk key={index} name={array[0]} desc={array[1]} imprv={array[2]} onRiskChange={handleRisksChange} index={index}/>))}
     <br/>
-    <h2 className={styles.riskMid}>Risk Mitigated: {rm}%</h2>
+    <h2 className={styles.riskMid}>Risk Mitigated: {((rm / riskStates.length) * 100).toFixed(2)}%</h2>
     </div>
   );
 }

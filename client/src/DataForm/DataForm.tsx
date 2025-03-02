@@ -74,6 +74,7 @@ function DataForm() {
           const response = await fetch(`http://localhost:8080/upload?longitude=${location.longitude}&latitude=${location.latitude}`, request)
           let newResult = await response.json();
           setIsLoading(false);
+          console.log(newResult)
           if (newResult.summary === "") {
             newResult = {}
               if (submitButton) {
@@ -85,6 +86,7 @@ function DataForm() {
           const response = await fetch(`http://localhost:8080/upload/`, request)
           let newResult = await response.json();
           setIsLoading(false);
+          console.log(newResult);
           if (newResult.summary === "") {
             newResult = {}
               if (submitButton) {
