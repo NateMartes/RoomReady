@@ -28,14 +28,19 @@ class PromptParser:
                     case "*":
                         self.summary = line[1:len(line)-2]
                     case "-":
-                        risk = []
-                        line = line[2:] # string without -
-                        line = line.split("$$") # list
-                        risk.append(line[0].strip()) # disaster name
-                        line = line[1].split("|")
-                        risk.append(line[0].strip()) # description
-                        risk.append(line[1].strip()) # suggestions
-                        self.risks.append(risk)
+                        try:
+                            risk = []
+                            line = line[2:] # string without -
+                            line = line.split("$$") # list
+                            risk.append(line[0].strip()) # disaster name
+                            line = line[1].split("|")
+                            risk.append(line[0].strip()) # description
+                            risk.append(line[1].strip()) # suggestions
+                            self.risks.append(risk)
+                        except:
+                            self.summary = ""
+                            self.risks = []
+                            break
 
     def get_summary(self):
         return self.summary

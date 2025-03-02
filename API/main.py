@@ -81,6 +81,7 @@ async def upload_file(
     else:
         gemini_reply = gemini_reviewer.review_img(model, file_path)
 
+    print(gemini_reply)
     risk_informatics = PromptParser(gemini_reply)
 
     # Construct response
