@@ -51,7 +51,7 @@ def review_img_with_weather(model, img_path, svn_day_frcst):
 
 
 if __name__ == '__main__':
-    API_KEY = 'AIzaSyB4Vm7cwlhinUD3VxviSm5-vdG8QIt_o8c'
+    API_KEY = ''
     model = create_model(API_KEY)
     print(review_img(model, 'hotelroom.jpeg'))
 
