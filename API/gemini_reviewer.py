@@ -5,6 +5,7 @@ import google.generativeai as genai
 GEMINI_MODEL_TYPE = 'gemini-2.0-flash-001'
 
 REVIEW_PROMPT = """
+Pretend you are a meteorologist.
 You have been given an image of some setting. If the setting does not look like a room or have 
 any significant risks against natural disasters, please only responsd with @. Otherwise, please give at most a 3 sentence
 summary of the room's risks against natural disasters. Please denote it with a * at the beginning
@@ -16,6 +17,7 @@ Please divide the risk and suggestion on each line with a | between them.
 """
 
 REVIEW_WITH_WEATHER_PROMPT = """
+Pretend you are a meteorologist.
 You have been given an image of some setting. Here is a 7-day forecast of the weather for
 that setting: {}. If the setting does not look like a room or does not have any significant risks
 against any upcoming or general natural disasters, please only respond with @. Otherwise, please give at most a 3 sentence
