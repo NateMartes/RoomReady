@@ -27,6 +27,7 @@ function DataForm() {
     ]
   }
 
+
   const [image, setImage] = useState<File | null>(null);
   const [location, setLocation] = useState<locationData | null>(null);
   const [isLocationOn, setLocationOn] = useState<bool>(false);
@@ -69,7 +70,6 @@ function DataForm() {
           const response = await fetch(`http://localhost:8080/upload/`, request)
           console.log(response);
           const newResult = await response.json();
-          console.log(newResult);
           setResult(newResult);
       }
 
@@ -78,11 +78,7 @@ function DataForm() {
     }  
   };
 
-  return (
-    result ? (
-      <Response result={result} />
-    ) : (
-      <form onSubmit={sendDataToServer}>
+  const form = (<form onSubmit={sendDataToServer}>
         <div className="formElements">
           <ImageUploader onImageChange={handleImageChange} onLocationChange={handleLocationChange} switchLocation={setLocationOnChange}/>
         </div>
@@ -91,7 +87,12 @@ function DataForm() {
           (isLocationOn && location && !image)}>Analyze!</button>
         </div>
       </form>
-    )
+    );
+
+
+  return (
+    result ? (Object.keys(result).length !== 0 ? <Response result={result} /> : 
+    <>{form}<p>Not recgonzied as a valid image.</p></>) : form 
   );
 }
 
