@@ -24,7 +24,7 @@ By simply snapping a picture, Room-Ready gathers weather data based on your loca
                 @#%@                
                 @%@                 3️⃣ The app **analyzes** your location  
                 @@                  and retrieves real-time weather data.  
-               @@                   4️⃣ Receive **instant feedback** on whether  
+                @                   4️⃣ Receive **instant feedback** on whether  
                                      your area is prepared for upcoming severe weather.  
                                 ```
 
