@@ -18,7 +18,7 @@ By simply snapping a picture, Room-Ready gathers weather data based on your loca
         @###############*#%         
          @@@@@@@%#@@@@@@@           
                %==@                 
-              @#=+##%@              🚀 **How to Use:**  
+              @#=+##%@                                🚀 **How to Use:**  
               @***=+@               1️⃣ **Visit** the Room-Ready web app.  
               @@@@+@@               2️⃣ **Snap a picture** of your surroundings using your device.  
                 @#%@                
@@ -26,11 +26,18 @@ By simply snapping a picture, Room-Ready gathers weather data based on your loca
                 @@                  and retrieves real-time weather data.  
                @@                   4️⃣ Receive **instant feedback** on whether  
                                      your area is prepared for upcoming severe weather.  
-```
+                                ```
 
-## 📚 Sources  
-- 🌟 **Gemini**  
+                                ## 📚 Sources  
+                                 - 🌟 **Gemini**  
 
----
+                               ---
 
 🌪️ Stay safe. Stay prepared. Get **Room-Ready!**  
+
+                        .           '              +                  .              +                    o            
+*           +   .                                           .:'         | '                           .-.         .    
+     +                                          o       _.::' .        -o-                   ++      (   )         '   
+          |    '           .      /      '             (_.'    '        |                 .           `-'.         o   
+   .   ' -+-              .      /                          .               _|_    *                             *     
+          |                +~~  *        '                                   |    +                          +         
