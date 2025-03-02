@@ -9,17 +9,26 @@ import google.generativeai as genai  # Correct import
 GEMINI_MODEL_TYPE = 'gemini-2.0-flash-001'
 
 REVIEW_PROMPT = """
-You have been given an image of some setting. Please give some suggestions
-on how to make the setting safer for natural disasters. Please list each
-suggestion on its own line with a - at the beginning of each line.
+You have been given an image of some setting. Please give at most a 3 sentence summary
+of the setting's risks against natural disasters. Please denote it with a * at the beginning
+and end of it. Also, please list natural disaster risks associated with that setting, 
+and a suggestion for each risk. Please list a risk and its suggestion on its own line, 
+denoted by a - at the beginning of the line. For each risk, please give a name for it,
+and a description for it. Divide the name and description of each risk with $$ between them.
+Please divide the risk and suggestion on each line with a | between them.
 """
 
 REVIEW_WITH_WEATHER_PROMPT = """
-You have been given an image of some setting. Here is a 7-day forecast of
-the weather for that setting: {}. Please give some suggestions on how to make
-the given setting safer for the upcoming weather, as well as some general
-suggestions to make the setting generally safer. Please list each suggestion on
-its own line with a - at the beginning of each line.
+You have been given an image of some setting. Here is a 7-day forecast of the weather for
+that setting: {}. Please give at most a 3 sentence summary of the setting's risks against
+the upcoming weather, and general risks against natural disasters. Please denote it with
+a * at the beginning and end of it. Also, please list risks from the setting for the upcoming
+weather and general natural disasters, and a suggestion for each risk. Please list a risk
+and its suggestion on its own line, denoted by a - at the beginning of the line. For each
+risk, please give a name for it, and a description for it. Please divide the name and description
+of each risk with $$ between them. Please divide the risk and suggestion on each line with a |
+between it.
+
 """
 
 def create_model(api_key):
@@ -40,6 +49,11 @@ def review_img_with_weather(model, img_path, svn_day_frcst):
     ])
     return response.text
 
+
+if __name__ == '__main__':
+    API_KEY = 'AIzaSyB4Vm7cwlhinUD3VxviSm5-vdG8QIt_o8c'
+    model = create_model(API_KEY)
+    print(review_img(model, 'hotelroom.jpeg'))
 
 """
 >>>>>>> 3ab3f5da5f32e70c1122f74bca5a3dd1e0b5087f
