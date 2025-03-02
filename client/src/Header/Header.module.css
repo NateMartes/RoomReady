@@ -7,6 +7,6 @@
 }
 .headerDiv > .headerSummary {
     text-align: left; /* Left-align text */
-    width: 50%; /* Set a max width for readability (optional) */
-    max-width: 600px; /* Prevents text from stretching too wide */
+    width: 70%; /* Set a max width for readability (optional) */
+    max-width: 60em; /* Prevents text from stretching too wide */
 }

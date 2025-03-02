@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ImageUploader from "../ImageUploader/ImageUploader.tsx";
 import Location from "../Location/Location.tsx";
 import Response from "../Response/Response.tsx";
+import LoadingIcon from "../assets/Dark_Mode_Load.svg";
 
 function DataForm() {
 
@@ -32,6 +33,7 @@ function DataForm() {
   const [location, setLocation] = useState<locationData | null>(null);
   const [isLocationOn, setLocationOn] = useState<bool>(false);
   const [result, setResult] = useState<response | null>(null);
+  const [isLoading, setIsLoading] = useState<bool>(false);
 
   const handleImageChange = (newImage: File) => {
     setImage(newImage);
@@ -50,6 +52,7 @@ function DataForm() {
 
   const sendDataToServer =  async (event: React.FormEvent) => {
   event.preventDefault()
+  setIsLoading(true);
 
   const submitButton = event.currentTarget.querySelector("button[type='submit']");
   if (submitButton) {
@@ -68,12 +71,13 @@ function DataForm() {
     
        console.log(request)
        if (location) {
-          const response = await fetch(`http://localhost:8080/upload?longitude=${location.longitude}&latitude=${location.latitude}`, request)
+          //const response = await fetch(`http://localhost:8080/upload?longitude=${location.longitude}&latitude=${location.latitude}`, request)
           console.log(response);
           const newResult = await response.json();
+          setIsLoading(false);
           setResult(newResult);
       } else {
-          const response = await fetch(`http://localhost:8080/upload/`, request)
+          //const response = await fetch(`http://localhost:8080/upload/`, request)
           console.log(response);
           const newResult = await response.json();
           setResult(newResult);
@@ -91,6 +95,8 @@ function DataForm() {
         <div className="submitContainer">
           <button className="button" type="submit" disabled={!image || (isLocationOn && !location) ||
           (isLocationOn && location && !image)}>Analyze!</button>
+          {isLoading ? <img style={{margin: "0", verticalAlign: 'middle'} }src={LoadingIcon} i
+          type="image/svg" alt="Loading" width="36px"/> : null}
         </div>
       </form>
     );
