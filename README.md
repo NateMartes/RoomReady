@@ -15,7 +15,7 @@ By simply snapping a picture, Room-Ready gathers weather data based on your loca
         %#+=-----------++*%         
         #-----------------#         
         #-----------------#         
-        @###############*#%         
+        %#################%         
          @@@@@@@@@@@@@@@@@           
                %==@                 
               @#=+##%@                                🚀 **How to Use:**  
