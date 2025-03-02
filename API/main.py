@@ -4,8 +4,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import tempfile
 from typing import Optional
+from promptparser import PromptParser
+import gemini_reviewer
+from WeatherApi import NOAAWeather
 
 app = FastAPI()
+model = create_model(GEM_API_KEY)
 
 origins = [
     "http://localhost:8080",
@@ -62,29 +66,22 @@ async def upload_file(
         temp_file.write(file_bytes)
         file_path = temp_file.name  # Save the file path
 
-    # At this point, if you've said enough prayers, you should have an image uploaded
-    # to the dockerfile. You can then prompt gemini with this image and as well as weather
-    # information
+    if latitude is not None and longitude is not None:
+        forecast = NOAAWeather.get_7_day_forecast(latitude, longitude)
+        gemini_reply = gemini_reviewer.review_img_with_weather(model, file_path, forecast)
+    else:
+        gemini_reply = gemini_review.review_img(mode, file_path)
+
+    risk_informatics = PromptParser(gemini_reply)
 
     # Construct response
     response = {
-        "summary": "",
+        "summary": risk_informatics.get_summary(),
         #"total_risks": "",  # Bytes length of the file
-        "risks" : [
-            ["", "", ""]
-            #    .
-            #    .
-            #    .
-        ]
+        "risks" : []
     }
 
-    response["summary"] = "ldsjfklj"
-    #response["total_risks"] = "lkjsfdlksdfjk"
-    #for risk in risks
-    response["risks"].append(["riskname", "riskdesc.", "improvements"])
-
-    if latitude is not None and longitude is not None:
-        response["latitude"] = latitude
-        response["longitude"] = longitude
+    for risk in risk_informatics.get_risks():
+        response["risks"].append([risk[0], risk[1], risk[2]])
 
     return response
