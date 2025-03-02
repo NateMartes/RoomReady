@@ -26,7 +26,7 @@ class PromptParser:
                     case "@":
                         break
                     case "*":
-                        summary = line[1:len(line)-2]
+                        self.summary = line[1:len(line)-2]
                     case "-":
                         risk = []
                         line = line[2:] # string without -
