@@ -38,7 +38,6 @@ def review_img(model, img_path):
     response = model.generate_content([REVIEW_PROMPT, uploaded_file])
     return response.text
 
-
 def review_img_with_weather(model, img_path, svn_day_frcst):
     uploaded_file = genai.upload_file(img_path)
     response = model.generate_content([

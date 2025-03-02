@@ -7,6 +7,7 @@ from typing import Optional
 from promptparser import PromptParser
 import gemini_reviewer
 from WeatherApi import NOAAWeather
+import json
 
 app = FastAPI()
 with open("GEM.env", "r") as f:
@@ -72,13 +73,11 @@ async def upload_file(
     with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp_file:
         temp_file.write(file_bytes)
         file_path = temp_file.name  # Save the file path
+        print(file_path)
 
     if latitude is not None and longitude is not None:
         forecast = weather.get_7_day_forecast(latitude, longitude)
-        print(type(forecast))
-        gemini_reply = gemini_reviewer.review_img_with_weather(model, file_path, forecast)
-    else:
-        gemini_reply = gemini_reviewer.review_img(model, file_path)
+        gemini_reply = gemini_reviewer.review_img_with_weather(model, file_path, json.dumps(forecast))
 
     risk_informatics = PromptParser(gemini_reply)
 
