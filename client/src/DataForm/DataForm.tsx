@@ -30,7 +30,7 @@ function DataForm() {
   const [image, setImage] = useState<File | null>(null);
   const [location, setLocation] = useState<locationData | null>(null);
   const [isLocationOn, setLocationOn] = useState<bool>(false);
-  const [result, setResult] = useState<response | null>(null);
+  const [result, setResult] = useState<response | null>(test_result);
 
   const handleImageChange = (newImage: File) => {
     setImage(newImage);
@@ -61,16 +61,16 @@ function DataForm() {
     
        console.log(request)
        if (location) {
-          const response = await fetch(`http://localhost:8080/test?longitude=${location.longitude}&latitude=${location.latitude}`, request)
+          const response = await fetch(`http://localhost:8080/upload?longitude=${location.longitude}&latitude=${location.latitude}`, request)
           console.log(response);
           const newResult = await response.json();
-          setResult(test_result); //CHANGE THIS!!!
+          setResult(newResult);
       } else {
-          const response = await fetch(`http://localhost:8080/test/`, request)
+          const response = await fetch(`http://localhost:8080/upload/`, request)
           console.log(response);
           const newResult = await response.json();
           console.log(newResult);
-          setResult(newResult); //CHANGE THIS!!!
+          setResult(newResult);
       }
 
     } catch (error) {
