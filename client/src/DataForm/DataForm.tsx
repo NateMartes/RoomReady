@@ -71,15 +71,22 @@ function DataForm() {
     
        console.log(request)
        if (location) {
-          //const response = await fetch(`http://localhost:8080/upload?longitude=${location.longitude}&latitude=${location.latitude}`, request)
-          console.log(response);
-          const newResult = await response.json();
+          const response = await fetch(`http://localhost:8080/upload?longitude=${location.longitude}&latitude=${location.latitude}`, request)
+          let newResult = await response.json();
           setIsLoading(false);
+          if (newResult.summary === "") {
+            newResult = {}
+            submitButton.disabled = false;
+          }
           setResult(newResult);
       } else {
-          //const response = await fetch(`http://localhost:8080/upload/`, request)
-          console.log(response);
-          const newResult = await response.json();
+          const response = await fetch(`http://localhost:8080/upload/`, request)
+          let newResult = await response.json();
+          setIsLoading(false);
+          if (newResult.summary === "") {
+            newResult = {}
+            submitButton.disabled = false;
+          }
           setResult(newResult);
       }
 
