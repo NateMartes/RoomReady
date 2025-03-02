@@ -9,7 +9,14 @@ import gemini_reviewer
 from WeatherApi import NOAAWeather
 
 app = FastAPI()
-model = create_model(GEM_API_KEY)
+with open("GEM.env", "r") as f:
+    GEM_API_KEY = f.readline()
+
+with open("NOAA.env", "r") as f:
+    NOAA_API_KEY = f.readline()
+
+model = gemini_reviewer.create_model(GEM_API_KEY)
+weather = NOAAWeather(NOAA_API_KEY)
 
 origins = [
     "http://localhost:8080",
@@ -67,10 +74,11 @@ async def upload_file(
         file_path = temp_file.name  # Save the file path
 
     if latitude is not None and longitude is not None:
-        forecast = NOAAWeather.get_7_day_forecast(latitude, longitude)
+        forecast = weather.get_7_day_forecast(latitude, longitude)
+        print(type(forecast))
         gemini_reply = gemini_reviewer.review_img_with_weather(model, file_path, forecast)
     else:
-        gemini_reply = gemini_review.review_img(mode, file_path)
+        gemini_reply = gemini_reviewer.review_img(model, file_path)
 
     risk_informatics = PromptParser(gemini_reply)
 
