@@ -16,7 +16,7 @@ with open("GEM.env", "r") as f:
 with open("NOAA.env", "r") as f:
     NOAA_API_KEY = f.readline()
 
-model = gemini_reviewer.create_model("AIzaSyDSagerzV8SibHHwkSKxYC1zRdxbhDOXJs")
+model = gemini_reviewer.create_model(GEM_API_KEY)
 weather = NOAAWeather(NOAA_API_KEY)
 
 origins = [

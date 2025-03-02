@@ -30,7 +30,7 @@ function DataForm() {
   const [image, setImage] = useState<File | null>(null);
   const [location, setLocation] = useState<locationData | null>(null);
   const [isLocationOn, setLocationOn] = useState<bool>(false);
-  const [result, setResult] = useState<response | null>(test_result);
+  const [result, setResult] = useState<response | null>(null);
 
   const handleImageChange = (newImage: File) => {
     setImage(newImage);
