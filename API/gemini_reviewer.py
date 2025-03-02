@@ -36,6 +36,7 @@ def create_model(api_key):
 def review_img(model, img_path):
     uploaded_file = genai.upload_file(img_path)
     response = model.generate_content([REVIEW_PROMPT, uploaded_file])
+    genai.delete_file(uploaded_file.name)
     return response.text
 
 def review_img_with_weather(model, img_path, svn_day_frcst):
@@ -43,6 +44,7 @@ def review_img_with_weather(model, img_path, svn_day_frcst):
     response = model.generate_content([
         REVIEW_WITH_WEATHER_PROMPT.replace('{}', svn_day_frcst), uploaded_file
     ])
+    genai.delete_file(uploaded_file.name)
     return response.text
 
 
