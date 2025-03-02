@@ -68,36 +68,3 @@ if __name__ == '__main__':
     print(review_img_with_weather(model, 'skyrimroom.jpg', detroit_fcst), '\n')
     print(review_img_with_weather(model, 'walk-in-cooler.jpeg', detroit_fcst), '\n')
     print(review_img_with_weather(model, 'logcabin.jpg', newark_fcst))
-
-"""
->>>>>>> 3ab3f5da5f32e70c1122f74bca5a3dd1e0b5087f
-def send_forecast_to_gemini(forecast_json, api_key):
-    \"""
-    Sends the NOAA weather forecast to Gemini API with a specific prompt format.
-    \"""
-    # Configure Gemini API correctly
-    genai.configure(api_key=api_key)
-
-    # Format the prompt for supreme overlord gemini
-    prompt = f\"""You have been given an image of some setting. 
-    Here is a 7-day forecast of the weather for that setting: {forecast_json}. 
-    Please give some suggestions on how to make the given setting safer for the upcoming weather, 
-    as well as some general suggestions to make the setting generally safer. 
-    Please list each suggestion on its own line with a - at the beginning of each line.\"""
-
-    # Create the model and generate content
-    model = genai.GenerativeModel("gemini-2.0-flash-001")
-    response = model.generate_content(prompt)
-
-    return response.text
-
-# this shit runs the shit i guess :)
-if __name__ == "__main__":
-    api_key = "ADD-API-KEY"  # Replace with your actual API key
-
-    with open("forecast_output.json", "r") as f:
-        forecast_data = json.load(f)
-
-    result = send_forecast_to_gemini(json.dumps(forecast_data, indent=4), api_key)
-    print(result)
-"""
