@@ -1,6 +1,7 @@
 import json
-import google.generativeai as genai  # Correct import
-
+import google.generativeai as genai 
+# Correct import ^^^^^^^^^^^^^^^
+#pip install google-generativeai
 def send_forecast_to_gemini(forecast_json, api_key):
     """
     Sends the NOAA weather forecast to Gemini API with a specific prompt format.
